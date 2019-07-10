@@ -29,6 +29,10 @@ public class Card implements Comparable<Card> {
         suit = s;
         rank = r;
     }
+    
+    public Map<Rank, Integer> getMap() {
+    	return map;
+    }
 
     @Override
     public int compareTo(Card comparison) {

@@ -37,10 +37,15 @@ public class Deck {
     public boolean isEmpty() {
         return deck.isEmpty();
     }
-
+    
     public Card add() {
         return deck.pop();
     }
+    
+    public int size() {
+    	return deck.size();
+    }
+
 
     private LinkedList<Card> createDeck() {
         LinkedList<Card> buildDeck = new LinkedList<>();
