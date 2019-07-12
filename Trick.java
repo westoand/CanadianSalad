@@ -26,6 +26,10 @@ public class Trick {
     public Player getTaker() {
         return taker;
     }
+    
+    public LinkedList<Card> getTrickList() {
+    	return trick;
+    }
 
     @Override
     public String toString() {

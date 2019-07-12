@@ -107,6 +107,12 @@ public class Deck {
 
         return buildDeck;
     }
+    
+    public void emptyDeck() {
+    	while (deck.size() > 0) {
+    		deck.remove();
+    	}
+    }
 
 
     @Override

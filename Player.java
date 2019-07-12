@@ -28,6 +28,12 @@ public class Player {
         }
         return playerStr.toString();
     }
+    
+    public void emptyHand() {
+    	while (hand.size() > 0) {
+    		hand.remove();
+    	}
+    }
 
     public void takeTrick(Trick trick) {
         this.tricks.add(trick);
