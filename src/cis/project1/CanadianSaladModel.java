@@ -394,6 +394,10 @@ public class CanadianSaladModel {
 	protected Player getUserPlayer() {
 		return players.get(players.size() - 1);
 	}
+	
+	public LinkedList<Trick> getTricks() {
+		return tricks;
+	}
 
 }
 //  Draft for version 2

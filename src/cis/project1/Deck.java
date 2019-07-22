@@ -162,6 +162,16 @@ public class Deck {
 
         return buildDeck;
     }
+    
+    
+    /******************************************************************
+     * This getter method returns "this" Deck object's cards.
+     *
+     * @return is the collection of Card objects.
+     *****************************************************************/
+    public LinkedList<Card> getDeck() {
+    	return this.deck;
+    }
 
     
 	 /*****************************************************************
