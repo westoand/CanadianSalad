@@ -13,22 +13,22 @@ import javax.swing.JFrame;
  * @version Summer 2019
  *********************************************************************/
 public final class CanadianSaladGUI {
-	
-	
-	 /*****************************************************************
+
+
+    /*****************************************************************
      * This private ensures the CanadianSaladGUI class functions
      * as a utility class.
      *
      *****************************************************************/
-	private CanadianSaladGUI() {
-	}
-	
-	
-	
-	/******************************************************************
+    private CanadianSaladGUI() {
+    }
+
+
+
+    /******************************************************************
      * This method is the "driver" of a Model-View-Controller program.
      * The program simulates the trick-taking card game Canadian Salad.
-     * 
+     *
      * @param args represents optional command line arguments.
      *****************************************************************/
     public static void main(final String[] args) {
@@ -50,7 +50,7 @@ public final class CanadianSaladGUI {
         frame.pack();
         frame.setVisible(true);
 
-        panel.autoPlay();
+        theGame.autoPlay();
     }
 }
 

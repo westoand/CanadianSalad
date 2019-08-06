@@ -11,71 +11,56 @@ import java.util.Random;
  * @version Summer 2019
  *********************************************************************/
 public class Deck {
-    
-	
-	/******************************************************************
-	 * The deck object is composed of a LinkedList of Card objects.
-	 *****************************************************************/
-	private LinkedList<Card> deck;
 
-	
-	 /*****************************************************************
+
+    /******************************************************************
+     * The deck object is composed of a LinkedList of Card objects.
+     *****************************************************************/
+    private LinkedList<Card> deck;
+
+
+    /*****************************************************************
      * This constructor creates a Deck object representing a deck of
      * standard playing cards.
-     *
-     * @param numPlayers the number of game players
      *****************************************************************/
-    public Deck(final int numPlayers) {
-        deck = new LinkedList<>();
-        initializeDeck(numPlayers);
+    public Deck() {
+        createDeck();
     }
 
-    
-	 /*****************************************************************
-     * This helper method builds a deck with the proper number of cards
-     * for the number of players and then randomizes it.
-     *
-     * @param numPlayers the number of game players
-     *****************************************************************/
-    private void initializeDeck(final int numPlayers) {
-        LinkedList<Card> tempDeck = makeEvenHands(numPlayers, createDeck());
 
-        while (!tempDeck.isEmpty()) {
+    /*****************************************************************
+     * This method shuffles the deck's cards into a random order.
+     *****************************************************************/
+    public void randomize() {
+        LinkedList<Card> newDeck = new LinkedList<>();
+        while (!deck.isEmpty()) {
             Random rand = new Random();
-            deck.add(tempDeck.remove(rand.nextInt(tempDeck.size())));
+            newDeck.add(deck.remove(rand.nextInt(deck.size())));
         }
+        deck = newDeck;
     }
 
+
     
-	 /*****************************************************************
-     * This helper method builds a deck with the proper number of 
-     * cards for the number of players.
+
+    /*****************************************************************
+     * This method removes the specified Card object from "this" 
+     * Deck object.
      *
-     * @param numPlayers the number of game players
-     * @param buildDeck is the original (full) deck to be adjusted.
-     * @return is a LinkedList<Card> representing the modified deck.
+     *@param c is the card to be removed from the Deck.
+     * @return is a boolean representing whether the specified Card
+     * was successfully removed.
      *****************************************************************/
-    private LinkedList<Card> makeEvenHands(
-    		final int numPlayers, final LinkedList<Card> buildDeck) {
-        if (numPlayers == 3) {
-            buildDeck.remove(new Card(Suit.Clubs, Rank.Two));
-        }
-
-        if (numPlayers == 5) {
-            buildDeck.remove(new Card(Suit.Clubs, Rank.Two));
-            buildDeck.remove(new Card(Suit.Diamonds, Rank.Two));
-        }
-        if (numPlayers == 6) {
-            buildDeck.remove(new Card(Suit.Clubs, Rank.Two));
-            buildDeck.remove(new Card(Suit.Clubs, Rank.Three));
-            buildDeck.remove(new Card(Suit.Diamonds, Rank.Two));
-            buildDeck.remove(new Card(Suit.Diamonds, Rank.Three));
-        }
-        return buildDeck;
+    public boolean remove(final Card c) {
+        if (c == null) {
+            return false;
+        } else {
+        	return deck.remove(c);
+        	}
     }
 
-    
-	 /*****************************************************************
+
+    /*****************************************************************
      * This method returns whether the LinkedList representing the
      * deck is empty.
      *
@@ -85,8 +70,8 @@ public class Deck {
         return deck.isEmpty();
     }
 
-    
-	 /*****************************************************************
+
+    /*****************************************************************
      * This method removes a Card object from "this" Deck object.
      *
      * @return is a Card object representing the card removed from
@@ -96,85 +81,85 @@ public class Deck {
         return deck.pop();
     }
 
-    
-	 /*****************************************************************
+
+    /*****************************************************************
      * This helper method builds a standard playing card deck.
      *
      * @return is a LinkedList<Card> representing the complete deck.
      *****************************************************************/
     private LinkedList<Card> createDeck() {
-        LinkedList<Card> buildDeck = new LinkedList<>();
-        buildDeck.add(new Card(Suit.Diamonds, Rank.Two));
-        buildDeck.add(new Card(Suit.Diamonds, Rank.Three));
-        buildDeck.add(new Card(Suit.Diamonds, Rank.Four));
-        buildDeck.add(new Card(Suit.Diamonds, Rank.Five));
-        buildDeck.add(new Card(Suit.Diamonds, Rank.Six));
-        buildDeck.add(new Card(Suit.Diamonds, Rank.Seven));
-        buildDeck.add(new Card(Suit.Diamonds, Rank.Eight));
-        buildDeck.add(new Card(Suit.Diamonds, Rank.Nine));
-        buildDeck.add(new Card(Suit.Diamonds, Rank.Ten));
-        buildDeck.add(new Card(Suit.Diamonds, Rank.Jack));
-        buildDeck.add(new Card(Suit.Diamonds, Rank.Queen));
-        buildDeck.add(new Card(Suit.Diamonds, Rank.King));
-        buildDeck.add(new Card(Suit.Diamonds, Rank.Ace));
+        deck = new LinkedList<>();
+        deck.add(new Card(Suit.Diamonds, Rank.Two));
+        deck.add(new Card(Suit.Diamonds, Rank.Three));
+        deck.add(new Card(Suit.Diamonds, Rank.Four));
+        deck.add(new Card(Suit.Diamonds, Rank.Five));
+        deck.add(new Card(Suit.Diamonds, Rank.Six));
+        deck.add(new Card(Suit.Diamonds, Rank.Seven));
+        deck.add(new Card(Suit.Diamonds, Rank.Eight));
+        deck.add(new Card(Suit.Diamonds, Rank.Nine));
+        deck.add(new Card(Suit.Diamonds, Rank.Ten));
+        deck.add(new Card(Suit.Diamonds, Rank.Jack));
+        deck.add(new Card(Suit.Diamonds, Rank.Queen));
+        deck.add(new Card(Suit.Diamonds, Rank.King));
+        deck.add(new Card(Suit.Diamonds, Rank.Ace));
 
-        buildDeck.add(new Card(Suit.Hearts, Rank.Two));
-        buildDeck.add(new Card(Suit.Hearts, Rank.Three));
-        buildDeck.add(new Card(Suit.Hearts, Rank.Four));
-        buildDeck.add(new Card(Suit.Hearts, Rank.Five));
-        buildDeck.add(new Card(Suit.Hearts, Rank.Six));
-        buildDeck.add(new Card(Suit.Hearts, Rank.Seven));
-        buildDeck.add(new Card(Suit.Hearts, Rank.Eight));
-        buildDeck.add(new Card(Suit.Hearts, Rank.Nine));
-        buildDeck.add(new Card(Suit.Hearts, Rank.Ten));
-        buildDeck.add(new Card(Suit.Hearts, Rank.Jack));
-        buildDeck.add(new Card(Suit.Hearts, Rank.Queen));
-        buildDeck.add(new Card(Suit.Hearts, Rank.King));
-        buildDeck.add(new Card(Suit.Hearts, Rank.Ace));
+        deck.add(new Card(Suit.Hearts, Rank.Two));
+        deck.add(new Card(Suit.Hearts, Rank.Three));
+        deck.add(new Card(Suit.Hearts, Rank.Four));
+        deck.add(new Card(Suit.Hearts, Rank.Five));
+        deck.add(new Card(Suit.Hearts, Rank.Six));
+        deck.add(new Card(Suit.Hearts, Rank.Seven));
+        deck.add(new Card(Suit.Hearts, Rank.Eight));
+        deck.add(new Card(Suit.Hearts, Rank.Nine));
+        deck.add(new Card(Suit.Hearts, Rank.Ten));
+        deck.add(new Card(Suit.Hearts, Rank.Jack));
+        deck.add(new Card(Suit.Hearts, Rank.Queen));
+        deck.add(new Card(Suit.Hearts, Rank.King));
+        deck.add(new Card(Suit.Hearts, Rank.Ace));
 
-        buildDeck.add(new Card(Suit.Spades, Rank.Two));
-        buildDeck.add(new Card(Suit.Spades, Rank.Three));
-        buildDeck.add(new Card(Suit.Spades, Rank.Four));
-        buildDeck.add(new Card(Suit.Spades, Rank.Five));
-        buildDeck.add(new Card(Suit.Spades, Rank.Six));
-        buildDeck.add(new Card(Suit.Spades, Rank.Seven));
-        buildDeck.add(new Card(Suit.Spades, Rank.Eight));
-        buildDeck.add(new Card(Suit.Spades, Rank.Nine));
-        buildDeck.add(new Card(Suit.Spades, Rank.Ten));
-        buildDeck.add(new Card(Suit.Spades, Rank.Jack));
-        buildDeck.add(new Card(Suit.Spades, Rank.Queen));
-        buildDeck.add(new Card(Suit.Spades, Rank.King));
-        buildDeck.add(new Card(Suit.Spades, Rank.Ace));
+        deck.add(new Card(Suit.Spades, Rank.Two));
+        deck.add(new Card(Suit.Spades, Rank.Three));
+        deck.add(new Card(Suit.Spades, Rank.Four));
+        deck.add(new Card(Suit.Spades, Rank.Five));
+        deck.add(new Card(Suit.Spades, Rank.Six));
+        deck.add(new Card(Suit.Spades, Rank.Seven));
+        deck.add(new Card(Suit.Spades, Rank.Eight));
+        deck.add(new Card(Suit.Spades, Rank.Nine));
+        deck.add(new Card(Suit.Spades, Rank.Ten));
+        deck.add(new Card(Suit.Spades, Rank.Jack));
+        deck.add(new Card(Suit.Spades, Rank.Queen));
+        deck.add(new Card(Suit.Spades, Rank.King));
+        deck.add(new Card(Suit.Spades, Rank.Ace));
 
-        buildDeck.add(new Card(Suit.Clubs, Rank.Two));
-        buildDeck.add(new Card(Suit.Clubs, Rank.Three));
-        buildDeck.add(new Card(Suit.Clubs, Rank.Four));
-        buildDeck.add(new Card(Suit.Clubs, Rank.Five));
-        buildDeck.add(new Card(Suit.Clubs, Rank.Six));
-        buildDeck.add(new Card(Suit.Clubs, Rank.Seven));
-        buildDeck.add(new Card(Suit.Clubs, Rank.Eight));
-        buildDeck.add(new Card(Suit.Clubs, Rank.Nine));
-        buildDeck.add(new Card(Suit.Clubs, Rank.Ten));
-        buildDeck.add(new Card(Suit.Clubs, Rank.Jack));
-        buildDeck.add(new Card(Suit.Clubs, Rank.Queen));
-        buildDeck.add(new Card(Suit.Clubs, Rank.King));
-        buildDeck.add(new Card(Suit.Clubs, Rank.Ace));
+        deck.add(new Card(Suit.Clubs, Rank.Two));
+        deck.add(new Card(Suit.Clubs, Rank.Three));
+        deck.add(new Card(Suit.Clubs, Rank.Four));
+        deck.add(new Card(Suit.Clubs, Rank.Five));
+        deck.add(new Card(Suit.Clubs, Rank.Six));
+        deck.add(new Card(Suit.Clubs, Rank.Seven));
+        deck.add(new Card(Suit.Clubs, Rank.Eight));
+        deck.add(new Card(Suit.Clubs, Rank.Nine));
+        deck.add(new Card(Suit.Clubs, Rank.Ten));
+        deck.add(new Card(Suit.Clubs, Rank.Jack));
+        deck.add(new Card(Suit.Clubs, Rank.Queen));
+        deck.add(new Card(Suit.Clubs, Rank.King));
+        deck.add(new Card(Suit.Clubs, Rank.Ace));
 
-        return buildDeck;
+        return deck;
     }
-    
-    
+
+
     /******************************************************************
      * This getter method returns "this" Deck object's cards.
      *
      * @return is the collection of Card objects.
      *****************************************************************/
     public LinkedList<Card> getDeck() {
-    	return this.deck;
+        return this.deck;
     }
 
-    
-	 /*****************************************************************
+
+    /*****************************************************************
      * This method overrides the Object toString() method.
      *
      * @return is a String representation of the Card's attributes.
